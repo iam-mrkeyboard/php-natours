@@ -41,7 +41,6 @@ $RECYCLE.BIN/
 #-------------------------
 # These should never be under version control,
 # as it poses a security risk.
-.env
 .vagrant
 Vagrantfile
 
@@ -93,7 +92,6 @@ vendor/
 # Modules Testing
 _modules/*
 
-# phpenv local config
 .php-version
 
 # Jetbrains editors (PHPStorm, etc)

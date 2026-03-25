@@ -1,10 +1,15 @@
-<?php
-
-use CodeIgniter\Router\RouteCollection;
-
 /**
- * @var RouteCollection $routes
+ * --------------------------------------------------------------------
+ * Frontend Routes
+ * --------------------------------------------------------------------
  */
+
+// Home Page
+$routes->get('/', 'Home::index');
+
+// Tour Detail Page
+$routes->get('tours/(:num)', 'Tours::show/$1');
+
 /**
  * --------------------------------------------------------------------
  * API Routes

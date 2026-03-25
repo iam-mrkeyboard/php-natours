@@ -13,7 +13,7 @@ class Tours extends BaseController
      */
     public function show($id = null)
     {
-        $tourModel = new \App\Models\UserModel(); // Wait, I need TourModel!
+        // Load the TourModel to fetch tour data for the view
         $tourModel = new \App\Models\TourModel();
         
         $tour = $tourModel->find($id);

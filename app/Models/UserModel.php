@@ -37,6 +37,25 @@ class UserModel extends Model
     protected $allowedFields    = ['name', 'email', 'password', 'role', 'photo', 'passwordChangedAt'];
 
     /**
+     * Validation Rules
+     */
+    protected $validationRules = [
+        'name'     => 'required|min_length[3]|max_length[50]',
+        'email'    => 'required|valid_email|is_unique[users.email,id,{id}]',
+        'password' => 'required|min_length[8]',
+        'passwordConfirm' => 'matches[password]'
+    ];
+
+    protected $validationMessages = [
+        'email' => [
+            'is_unique' => 'This email address is already in use.'
+        ],
+        'passwordConfirm' => [
+            'matches' => 'Passwords do not match.'
+        ]
+    ];
+
+    /**
      * Callbacks
      */
     protected $beforeInsert = ['hashPassword'];

@@ -15,19 +15,43 @@ class UserController extends BaseController
      */
     public function index()
     {
-        // For now, we simulate a logged-in user if NO AUTH is present yet
-        // In Phase 5, we will implement real session check
-        $userData = [
-            'name'  => 'Jonas Schmedtmann',
-            'email' => 'jonas@example.com',
-            'role'  => 'user'
-        ];
+        if (!session()->has('user')) {
+            return redirect()->to('/login');
+        }
+
+        $user = session()->get('user');
 
         $data = [
             'title' => 'My Account',
-            'user'  => $userData
+            'user'  => $user
         ];
 
         return view('pages/account', $data);
+    }
+
+    /**
+     * Renders the user's booking history.
+     * URL: GET /my-tours
+     */
+    public function bookings()
+    {
+        if (!session()->has('user')) {
+            return redirect()->to('/login');
+        }
+
+        $user = session()->get('user');
+        $bookingModel = new \App\Models\BookingModel();
+        
+        // Find all bookings for the logged-in user
+        // Note: BookingModel should ideally join with tour data
+        $bookings = $bookingModel->where('userId', $user['id'])->findAll();
+
+        $data = [
+            'title'    => 'My Bookings',
+            'user'     => $user,
+            'bookings' => $bookings
+        ];
+
+        return view('pages/my_bookings', $data);
     }
 }

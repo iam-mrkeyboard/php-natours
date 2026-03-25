@@ -1,47 +1,28 @@
-<?= $this->extend('layout/main') ?>
+<style>
+    .alert {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: 400;
+        text-align: center;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 1.6rem 8rem;
+        box-shadow: 0 2rem 4rem rgba(0,0,0,0.25);
+    }
+    .alert--success { background-color: #20bf6b; }
+    .alert--error { background-color: #eb4d4b; }
+    .side-nav--active { border-left: 3px solid #fff; }
+</style>
 
-<?= $this->section('content') ?>
 <main class="main" style="background-color: #f7f7f7; padding: 8rem 0; min-height: 80vh;">
     <div class="user-view" style="background-color: #fff; max-width: 120rem; margin: 0 auto; min-height: 75vh; border-radius: 3px; overflow: hidden; box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.07); display: flex;">
         <!-- Sidebar Navigation -->
-        <nav class="user-view__menu" style="flex: 32rem 0 0; background-image: linear-gradient(to right bottom, #7ed56f, #28b485); padding: 4rem 0;">
-            <ul class="side-nav" style="list-style: none;">
-                <li class="side-nav--active" style="border-left: 3px solid #fff; transition: all 0.2s;">
-                    <a href="#" style="padding: 1rem 4rem; display: flex; align-items: center; color: #fff; text-transform: uppercase; text-decoration: none; font-size: 1.5rem;">
-                        Settings
-                    </a>
-                </li>
-                <li style="margin: 1rem 0;">
-                    <a href="#" style="padding: 1rem 4rem; display: flex; align-items: center; color: #fff; text-transform: uppercase; text-decoration: none; font-size: 1.5rem; opacity: 0.8;">
-                        My bookings
-                    </a>
-                </li>
-                <li style="margin: 1rem 0;">
-                    <a href="#" style="padding: 1rem 4rem; display: flex; align-items: center; color: #fff; text-transform: uppercase; text-decoration: none; font-size: 1.5rem; opacity: 0.8;">
-                        My reviews
-                    </a>
-                </li>
-                <li style="margin: 1rem 0;">
-                    <a href="#" style="padding: 1rem 4rem; display: flex; align-items: center; color: #fff; text-transform: uppercase; text-decoration: none; font-size: 1.5rem; opacity: 0.8;">
-                        Billing
-                    </a>
-                </li>
-            </ul>
-
-            <?php if (isset($user['role']) && $user['role'] === 'admin'): ?>
-                <div class="admin-nav" style="margin-top: 5.5rem;">
-                    <h5 class="admin-nav__heading" style="margin: 0 4rem 1.5rem 4rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.2); text-transform: uppercase; color: #fff; font-size: 1.2rem;">Admin</h5>
-                    <ul class="side-nav" style="list-style: none;">
-                        <li style="margin: 1rem 0;">
-                            <a href="#" style="padding: 1rem 4rem; display: flex; align-items: center; color: #fff; text-transform: uppercase; text-decoration: none; font-size: 1.5rem; opacity: 0.8;">Manage tours</a>
-                        </li>
-                        <li style="margin: 1rem 0;">
-                            <a href="#" style="padding: 1rem 4rem; display: flex; align-items: center; color: #fff; text-transform: uppercase; text-decoration: none; font-size: 1.5rem; opacity: 0.8;">Manage users</a>
-                        </li>
-                    </ul>
-                </div>
-            <?php endif; ?>
-        </nav>
+        <?= view('pages/account_sidebar', ['user' => $user]) ?>
 
         <!-- Main Content Area -->
         <div class="user-view__content" style="flex: 1; padding: 7rem 8rem;">
@@ -96,4 +77,5 @@
         </div>
     </div>
 </main>
+<script src="<?= base_url('js/account.js') ?>"></script>
 <?= $this->endSection() ?>

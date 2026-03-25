@@ -15,8 +15,12 @@ use CodeIgniter\Router\RouteCollection;
 // Home Page
 $routes->get('/', 'Home::index');
 
+// About Page
+$routes->get('about', 'Home::about');
+// Contact Page
+$routes->get('contact', 'Home::contact');
 // Tour Detail Page
-$routes->get('tours/(:num)', 'Tours::show/$1');
+$routes->get('tours/(:num)', 'Tours::detail/$1');
 
 // Auth Views
 $routes->get('login', 'AuthController::loginView');
@@ -24,6 +28,7 @@ $routes->get('signup', 'AuthController::signupView');
 
 // User Account
 $routes->get('me', 'UserController::index');
+$routes->get('my-tours', 'UserController::bookings');
 $routes->get('logout', 'AuthController::logout');
 
 /**

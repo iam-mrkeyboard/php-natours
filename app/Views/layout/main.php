@@ -25,8 +25,8 @@
         <div class="header__nav-container">
             <nav class="nav nav--tours">
                 <a href="<?= site_url('/') ?>" class="nav__el">All tours</a>
-                <a href="#" class="nav__el">About us</a>
-                <a href="#" class="nav__el">Contact</a>
+                <a href="<?= site_url('about') ?>" class="nav__el">About us</a>
+                <a href="<?= site_url('contact') ?>" class="nav__el">Contact</a>
             </nav>
             <div class="header__logo-box">
                 <img src="<?= site_url('img/logo-white.png') ?>" alt="Logo" class="header__logo">
@@ -66,7 +66,28 @@
 
     <!-- Footer Section: Constant for SEO and navigation -->
     <footer class="footer">
-        <!-- Footer content will go here in later steps -->
+        <div class="footer__logo-box">
+            <img src="<?= base_url('img/logo-green-2x.png') ?>" alt="Full logo" class="footer__logo">
+        </div>
+        <div class="row" style="max-width: 114rem; margin: 0 auto; display: flex; justify-content: space-between;">
+            <div class="col-1-of-2">
+                <div class="footer__navigation">
+                    <ul class="footer__list">
+                        <li class="footer__item"><a href="#" class="footer__link">Company</a></li>
+                        <li class="footer__item"><a href="<?= site_url('contact') ?>" class="footer__link">Contact us</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Carrers</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Privacy policy</a></li>
+                        <li class="footer__item"><a href="#" class="footer__link">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-1-of-2">
+                <p class="footer__copyright">
+                    Built by <a href="#" class="footer__link">Natours Team</a> for his online course <a href="#" class="footer__link">Advanced CSS and Sass</a>.
+                    Copyright &copy; by Jonas Schmedtmann.
+                </p>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

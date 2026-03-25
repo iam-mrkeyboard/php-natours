@@ -22,6 +22,9 @@ $routes->get('tours/(:num)', 'Tours::show/$1');
 $routes->get('login', 'AuthController::loginView');
 $routes->get('signup', 'AuthController::signupView');
 
+// User Account
+$routes->get('me', 'UserController::index');
+
 /**
  * --------------------------------------------------------------------
  * API Routes

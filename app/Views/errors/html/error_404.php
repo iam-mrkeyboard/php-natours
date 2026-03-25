@@ -1,84 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title><?= lang('Errors.pageNotFound') ?></title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natours | Page Not Found</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
     <style>
-        div.logo {
-            height: 200px;
-            width: 155px;
-            display: inline-block;
-            opacity: 0.08;
-            position: absolute;
-            top: 2rem;
-            left: 50%;
-            margin-left: -73px;
-        }
         body {
-            height: 100%;
-            background: #fafafa;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #777;
+            font-family: "Lato", sans-serif;
             font-weight: 300;
-        }
-        h1 {
-            font-weight: lighter;
-            letter-spacing: normal;
-            font-size: 3rem;
-            margin-top: 0;
-            margin-bottom: 0;
-            color: #222;
-        }
-        .wrap {
-            max-width: 1024px;
-            margin: 5rem auto;
-            padding: 2rem;
-            background: #fff;
+            line-height: 1.7;
+            color: #777;
+            padding: 3rem;
+            background-color: #f7f7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
             text-align: center;
-            border: 1px solid #efefef;
-            border-radius: 0.5rem;
-            position: relative;
         }
-        pre {
-            white-space: normal;
-            margin-top: 1.5rem;
+        .error-box {
+            background-color: #fff;
+            padding: 5rem 10rem;
+            box-shadow: 0 2rem 6rem rgba(0,0,0,0.1);
+            border-radius: 3px;
         }
-        code {
-            background: #fafafa;
-            border: 1px solid #efefef;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: block;
+        .heading-secondary {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: inline-block;
+            background-image: linear-gradient(to right, #7ed56f, #28b485);
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
         }
-        p {
-            margin-top: 1.5rem;
+        .error-msg {
+            font-size: 1.8rem;
+            margin-bottom: 4rem;
         }
-        .footer {
-            margin-top: 2rem;
-            border-top: 1px solid #efefef;
-            padding: 1em 2em 0 2em;
-            font-size: 85%;
-            color: #999;
+        .btn {
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 1.5rem 4rem;
+            display: inline-block;
+            border-radius: 10rem;
+            transition: all .2s;
+            font-size: 1.6rem;
+            background-color: #55c57a;
+            color: #fff;
+            border: none;
         }
-        a:active,
-        a:link,
-        a:visited {
-            color: #dd4814;
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
-    <div class="wrap">
-        <h1>404</h1>
-
-        <p>
-            <?php if (ENVIRONMENT !== 'production') : ?>
-                <?= nl2br(esc($message)) ?>
-            <?php else : ?>
-                <?= lang('Errors.sorryCannotFind') ?>
-            <?php endif; ?>
-        </p>
+    <div class="error-box">
+        <h2 class="heading-secondary">Uh oh! Something went wrong!</h2>
+        <p class="error-msg">The page you're looking for was not found (404 Error).</p>
+        <a href="/" class="btn">Go back to home</a>
     </div>
 </body>
 </html>

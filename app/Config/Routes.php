@@ -24,6 +24,7 @@ $routes->get('signup', 'AuthController::signupView');
 
 // User Account
 $routes->get('me', 'UserController::index');
+$routes->get('logout', 'AuthController::logout');
 
 /**
  * --------------------------------------------------------------------

@@ -1,6 +1,26 @@
 <?= $this->extend('layout/main') ?>
 
 <?= $this->section('content') ?>
+<style>
+    .alert {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: 400;
+        text-align: center;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 1.6rem 8rem;
+        box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+    }
+    .alert--success { background-color: #20bf6b; }
+    .alert--error { background-color: #eb4d4b; }
+</style>
+
 <main class="main" style="background-color: #f7f7f7; padding: 8rem 0; min-height: 80vh; display: flex; align-items: center; justify-content: center;">
     <div class="login-form" style="margin: 0 auto; max-width: 55rem; background-color: #fff; box-shadow: 0 2.5rem 8rem 2rem rgba(0, 0, 0, 0.06); padding: 5rem 7rem; border-radius: 5px;">
         <h2 class="heading-secondary u-margin-bottom-medium" style="font-size: 2.25rem; text-transform: uppercase; font-weight: 700; background-image: linear-gradient(to right, #7ed56f, #28b485); -webkit-background-clip: text; color: transparent; letter-spacing: 0.1rem; line-height: 1.3; display: inline-block; margin-bottom: 3rem;">Log into your account</h2>
@@ -20,4 +40,6 @@
         </form>
     </div>
 </main>
+
+<script src="<?= base_url('js/auth.js') ?>"></script>
 <?= $this->endSection() ?>

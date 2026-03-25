@@ -28,10 +28,18 @@
             <div class="header__logo-box">
                 <img src="<?= site_url('img/logo-white.png') ?>" alt="Logo" class="header__logo">
             </div>
-            <nav class="nav nav--user">
-                <!-- Authentication links - these can be made dynamic later -->
-                <a href="<?= site_url('login') ?>" class="nav__el">Log in</a>
-                <a href="<?= site_url('signup') ?>" class="nav__el nav__el--cta">Sign up</a>
+            <nav class="nav nav--user" style="display: flex; align-items: center;">
+                <?php if (session()->has('user')): ?>
+                    <?php $user = session()->get('user'); ?>
+                    <a href="<?= site_url('logout') ?>" class="nav__el">Log out</a>
+                    <a href="<?= site_url('me') ?>" class="nav__el" style="display: flex; align-items: center; text-decoration: none; color: #fff;">
+                        <img src="<?= base_url('img/users/' . ($user['photo'] ?? 'default.jpg')) ?>" alt="User photo" class="nav__user-img" style="height: 3.5rem; width: 3.5rem; border-radius: 50%; margin-right: 1rem;">
+                        <span style="font-size: 1.2rem; text-transform: uppercase;"><?= explode(' ', $user['name'])[0] ?></span>
+                    </a>
+                <?php else: ?>
+                    <a href="<?= site_url('login') ?>" class="nav__el">Log in</a>
+                    <a href="<?= site_url('signup') ?>" class="nav__el nav__el--cta">Sign up</a>
+                <?php endif; ?>
             </nav>
         </div>
 

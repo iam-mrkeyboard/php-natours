@@ -31,26 +31,28 @@ class AuthController extends BaseController
      */
     public function signup()
     {
-        // Load the UserModel
         $userModel = new \App\Models\UserModel();
-
-        // Get JSON data from the request body
         $json = $this->request->getJSON(true);
 
-        // Attempt to save the user data
-        // The model will automatically handle validation and password hashing
         if ($userModel->insert($json)) {
-            // If successful, return the new user ID and a success message
+            $userId = $userModel->insertID();
+            $user = $userModel->find($userId);
+
+            // Set User Session
+            session()->set('user', [
+                'id'    => $user['id'],
+                'name'  => $user['name'],
+                'email' => $user['email'],
+                'role'  => $user['role'],
+                'photo' => $user['photo']
+            ]);
+
             return $this->response->setJSON([
                 'status'  => 'success',
-                'message' => 'User registered successfully',
-                'data'    => [
-                    'user_id' => $userModel->insertID()
-                ]
-            ])->setStatusCode(201); // 201 Created
+                'message' => 'User registered and logged in successfully'
+            ])->setStatusCode(201);
         }
 
-        // Return validation errors if signup fails
         return $this->response->setJSON([
             'status' => 'fail',
             'errors' => $userModel->errors()
@@ -63,50 +65,44 @@ class AuthController extends BaseController
      */
     public function login()
     {
-        // Load the UserModel
         $userModel = new \App\Models\UserModel();
-
-        // Get JSON data from request
         $json = $this->request->getJSON(true);
         $email = $json['email'] ?? '';
         $password = $json['password'] ?? '';
 
-        // Check if user exists by email
         $user = $userModel->where('email', $email)->first();
 
-        // If user exists and password is correct
+        // Verify password using native verify (or UserModel helper if implemented)
         if ($user && password_verify($password, $user['password'])) {
             
-            // Generate JWT Token
-            $key = getenv('JWT_SECRET'); // from .env
-            $payload = [
-                'iat'  => time(),           // Issued at
-                'exp'  => time() + (60*60), // Expires in 1 hour
-                'uid'  => $user['id'],      // User ID
-                'role' => $user['role']     // User Role
-            ];
+            // Set User Session
+            session()->set('user', [
+                'id'    => $user['id'],
+                'name'  => $user['name'],
+                'email' => $user['email'],
+                'role'  => $user['role'],
+                'photo' => $user['photo']
+            ]);
 
-            $token = \Firebase\JWT\JWT::encode($payload, $key, 'HS256');
-
-            // Return success with the token
             return $this->response->setJSON([
                 'status' => 'success',
-                'token'  => $token,
-                'data'   => [
-                    'user' => [
-                        'id'    => $user['id'],
-                        'name'  => $user['name'],
-                        'email' => $user['email'],
-                        'role'  => $user['role']
-                    ]
-                ]
+                'message' => 'Logged in successfully'
             ]);
         }
 
-        // Invalid credentials
         return $this->response->setJSON([
             'status'  => 'fail',
             'message' => 'Incorrect email or password'
-        ])->setStatusCode(401); // 401 Unauthorized
+        ])->setStatusCode(401);
+    }
+
+    /**
+     * Handles user logout
+     * URL: GET /logout
+     */
+    public function logout()
+    {
+        session()->remove('user');
+        return redirect()->to('/');
     }
 }

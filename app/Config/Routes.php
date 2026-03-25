@@ -1,3 +1,11 @@
+<?php
+
+use CodeIgniter\Router\RouteCollection;
+
+/**
+ * @var RouteCollection $routes
+ */
+
 /**
  * --------------------------------------------------------------------
  * Frontend Routes

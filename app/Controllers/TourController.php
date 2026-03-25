@@ -125,5 +125,55 @@ class TourController extends BaseController
             'status' => 'success',
             'data' => null
         ])->setStatusCode(204); // No Content
+    /**
+     * Uploads a cover image for a tour
+     * URL: POST /api/v1/tours/(:num)/upload-cover
+     */
+    public function uploadCover($id = null)
+    {
+        // Load our custom upload helper
+        helper('upload_helper');
+
+        $tourModel = new \App\Models\TourModel();
+        
+        // Check if the tour exists
+        if (!$tourModel->find($id)) {
+            return $this->response->setJSON([
+                'status' => 'fail',
+                'message' => 'No tour found with that ID'
+            ])->setStatusCode(404);
+        }
+
+        // Get the uploaded photo file from the request
+        $file = $this->request->getFile('photo');
+
+        // Check if a file was actually uploaded
+        if (!$file) {
+            return $this->response->setJSON([
+                'status' => 'fail',
+                'message' => 'No photo provided'
+            ])->setStatusCode(400);
+        }
+
+        // Attempt to upload the image to the 'tours' sub-directory
+        $filename = upload_image($file, 'tours');
+
+        if ($filename) {
+            // Update the tour record with the new image cover filename
+            $tourModel->update($id, ['imageCover' => $filename]);
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Cover image uploaded successfully',
+                'data' => [
+                    'imageCover' => $filename
+                ]
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'status' => 'fail',
+            'message' => 'Failed to upload image'
+        ])->setStatusCode(500);
     }
 }

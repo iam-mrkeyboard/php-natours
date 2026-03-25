@@ -26,6 +26,8 @@ $routes->group('api/v1/tours', function ($routes) {
     $routes->get('(:num)', 'TourController::show/$1');
     $routes->patch('(:num)', 'TourController::update/$1');
     $routes->delete('(:num)', 'TourController::delete/$1');
+    // Route for uploading a tour cover image
+    $routes->post('(:num)/upload-cover', 'TourController::uploadCover/$1');
 });
 
 // Review Routes

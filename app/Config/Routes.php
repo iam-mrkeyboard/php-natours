@@ -35,3 +35,9 @@ $routes->group('api/v1/reviews', function ($routes) {
     $routes->get('/', 'ReviewController::index');
     $routes->post('/', 'ReviewController::create');
 });
+
+// Booking Routes
+$routes->group('api/v1/bookings', function ($routes) {
+    // Route for creating a Stripe Checkout Session
+    $routes->get('checkout-session/(:num)', 'BookingController::getCheckoutSession/$1');
+});

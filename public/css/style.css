@@ -250,6 +250,22 @@ body {
     color: var(--color-white);
 }
 
+.btn--animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* 5. Card Styles Refinement */
 .card {
     perspective: 150rem;
@@ -264,6 +280,11 @@ body {
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .15);
     border-radius: 3px;
     overflow: hidden;
+}
+
+.card:hover .card__side {
+    transform: translateY(-1.5rem) scale(1.03);
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, .2);
 }
 
 .card__picture {

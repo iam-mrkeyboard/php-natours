@@ -52,15 +52,15 @@
                             </div>
                             <h4 class="card__heading">
                                 <span class="card__heading-span">
-                                    <?= $tour['name'] ?>
+                                    <?= esc($tour['name']) ?>
                                 </span>
                             </h4>
                             <div class="card__details">
                                 <ul>
-                                    <li><?= $tour['duration'] ?> day tour</li>
-                                    <li>Up to <?= $tour['maxGroupSize'] ?> people</li>
-                                    <li><?= $tour['difficulty'] ?> difficulty</li>
-                                    <li>Rating: <?= $tour['ratingsAverage'] ?> / 5</li>
+                                    <li><?= esc($tour['duration']) ?> day tour</li>
+                                    <li>Up to <?= esc($tour['maxGroupSize']) ?> people</li>
+                                    <li><?= esc($tour['difficulty']) ?> difficulty</li>
+                                    <li>Rating: <?= esc($tour['ratingsAverage']) ?> / 5</li>
                                 </ul>
                             </div>
                             <div class="card__cta">

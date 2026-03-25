@@ -51,11 +51,11 @@
                 <form class="form form-user-data">
                     <div class="form__group" style="margin-bottom: 2rem;">
                         <label class="form__label" for="name" style="display: block; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">Name</label>
-                        <input class="form__input" id="name" type="text" value="<?= $user['name'] ?>" required name="name" style="display: block; font-family: inherit; color: inherit; font-size: 1.5rem; padding: 1.25rem 1.75rem; border: none; border-bottom: 3px solid transparent; width: 100%; transition: all 0.3s; background-color: #f2f2f2; border-radius: 4px;">
+                        <input class="form__input" id="name" type="text" value="<?= esc($user['name']) ?>" required name="name" style="display: block; font-family: inherit; color: inherit; font-size: 1.5rem; padding: 1.25rem 1.75rem; border: none; border-bottom: 3px solid transparent; width: 100%; transition: all 0.3s; background-color: #f2f2f2; border-radius: 4px;">
                     </div>
                     <div class="form__group" style="margin-bottom: 2.5rem;">
                         <label class="form__label" for="email" style="display: block; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.75rem;">Email address</label>
-                        <input class="form__input" id="email" type="email" value="<?= $user['email'] ?>" required name="email" style="display: block; font-family: inherit; color: inherit; font-size: 1.5rem; padding: 1.25rem 1.75rem; border: none; border-bottom: 3px solid transparent; width: 100%; transition: all 0.3s; background-color: #f2f2f2; border-radius: 4px;">
+                        <input class="form__input" id="email" type="email" value="<?= esc($user['email']) ?>" required name="email" style="display: block; font-family: inherit; color: inherit; font-size: 1.5rem; padding: 1.25rem 1.75rem; border: none; border-bottom: 3px solid transparent; width: 100%; transition: all 0.3s; background-color: #f2f2f2; border-radius: 4px;">
                     </div>
 
                     <div class="form__group form__photo-upload" style="display: flex; align-items: center; margin-bottom: 3rem;">

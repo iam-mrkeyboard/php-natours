@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Natours | <?= $title ?? 'Exciting tours for adventurous people' ?></title>
+    <title>Natours | <?= esc($title ?? 'Exciting tours for adventurous people') ?></title>
+    
+    <!-- CSRF Token for AJAX -->
+    <meta name="csrf-token" content="<?= csrf_hash() ?>">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
@@ -34,7 +37,7 @@
                     <a href="<?= site_url('logout') ?>" class="nav__el">Log out</a>
                     <a href="<?= site_url('me') ?>" class="nav__el" style="display: flex; align-items: center; text-decoration: none; color: #fff;">
                         <img src="<?= base_url('img/users/' . ($user['photo'] ?? 'default.jpg')) ?>" alt="User photo" class="nav__user-img" style="height: 3.5rem; width: 3.5rem; border-radius: 50%; margin-right: 1rem;">
-                        <span style="font-size: 1.2rem; text-transform: uppercase;"><?= explode(' ', $user['name'])[0] ?></span>
+                        <span style="font-size: 1.2rem; text-transform: uppercase;"><?= esc(explode(' ', $user['name'])[0]) ?></span>
                     </a>
                 <?php else: ?>
                     <a href="<?= site_url('login') ?>" class="nav__el">Log in</a>

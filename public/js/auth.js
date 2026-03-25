@@ -22,11 +22,14 @@ if (loginForm) {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
         try {
             const res = await fetch('/api/v1/users/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken
                 },
                 body: JSON.stringify({ email, password })
             });
@@ -61,11 +64,14 @@ if (signupForm) {
             return showAlert('error', 'Passwords do not match!');
         }
 
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
         try {
             const res = await fetch('/api/v1/users/signup', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken
                 },
                 body: JSON.stringify({ name, email, password, passwordConfirm })
             });

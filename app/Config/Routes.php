@@ -14,6 +14,7 @@ use CodeIgniter\Router\RouteCollection;
 // User Authentication Routes
 $routes->group('api/v1/users', function ($routes) {
     // Route for user registration
-    // Matches: POST /api/v1/users/signup
     $routes->post('signup', 'AuthController::signup');
+    // Route for user login
+    $routes->post('login', 'AuthController::login');
 });

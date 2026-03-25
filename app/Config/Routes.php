@@ -17,4 +17,11 @@ $routes->group('api/v1/users', function ($routes) {
     $routes->post('signup', 'AuthController::signup');
     // Route for user login
     $routes->post('login', 'AuthController::login');
+// Tour Routes (Resourceful)
+$routes->group('api/v1/tours', function ($routes) {
+    $routes->get('/', 'TourController::index');
+    $routes->post('/', 'TourController::create');
+    $routes->get('(:num)', 'TourController::show/$1');
+    $routes->patch('(:num)', 'TourController::update/$1');
+    $routes->delete('(:num)', 'TourController::delete/$1');
 });

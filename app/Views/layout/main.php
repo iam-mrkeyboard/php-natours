@@ -14,24 +14,41 @@
 </head>
 <body>
     <!-- 
-        Header Section: Constant across all pages unless specified.
-        In a full implementation, this might include the user login/profile.
+        Main Header & Navigation 
+        The header class is styled as a full-height hero by default, 
+        but we'll adjust this in CSS if we're not on the home page.
     -->
-    <header class="header">
-        <div class="header__logo-box">
-            <img src="<?= base_url('img/logo-white.png') ?>" alt="Logo" class="header__logo">
+    <header class="<?= (isset($showHero) && $showHero) ? 'header' : 'header--small' ?>">
+        <div class="header__nav-container">
+            <nav class="nav nav--tours">
+                <a href="<?= site_url('/') ?>" class="nav__el">All tours</a>
+                <a href="#" class="nav__el">About us</a>
+                <a href="#" class="nav__el">Contact</a>
+            </nav>
+            <div class="header__logo-box">
+                <img src="<?= site_url('img/logo-white.png') ?>" alt="Logo" class="header__logo">
+            </div>
+            <nav class="nav nav--user">
+                <!-- Authentication links - these can be made dynamic later -->
+                <a href="<?= site_url('login') ?>" class="nav__el">Log in</a>
+                <a href="<?= site_url('signup') ?>" class="nav__el nav__el--cta">Sign up</a>
+            </nav>
         </div>
 
-        <div class="header__text-box">
-            <h1 class="heading-primary">
-                <span class="heading-primary--main">Outdoors</span>
-                <span class="heading-primary--sub">is where life happens</span>
-            </h1>
-            <a href="#section-tours" class="btn btn--white btn--animated">Discover our tours</a>
-        </div>
+        <?php if (isset($showHero) && $showHero): ?>
+            <!-- Hero Content - only shown on the landing page -->
+            <div class="header__text-box">
+                <h1 class="heading-primary">
+                    <span class="heading-primary--main">Outdoors</span>
+                    <span class="heading-primary--sub">is where life happens</span>
+                </h1>
+
+                <a href="#section-tours" class="btn btn--white btn--animated">Discover our tours</a>
+            </div>
+        <?php endif; ?>
     </header>
 
-    <!-- Main Content: This is where each page's specific content will render -->
+    <!-- Main Content Area -->
     <main>
         <?= $this->renderSection('content') ?>
     </main>

@@ -50,6 +50,13 @@ class AuthController extends BaseController
             ])->setStatusCode(201); // 201 Created
         }
 
+        // Return validation errors if signup fails
+        return $this->response->setJSON([
+            'status' => 'fail',
+            'errors' => $userModel->errors()
+        ])->setStatusCode(400);
+    }
+
     /**
      * Handles user login
      * URL: POST /api/v1/users/login

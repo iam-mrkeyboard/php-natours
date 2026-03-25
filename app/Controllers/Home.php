@@ -18,8 +18,9 @@ class Home extends BaseController
 
         // Data to be passed to the view
         $data = [
-            'title' => 'Exciting tours for adventurous people',
-            'tours' => $tours
+            'title'    => 'Natours | Exciting tours for adventurous people',
+            'tours'    => $tours,
+            'showHero' => true // Enable the hero section for the landing page
         ];
 
         return view('pages/home', $data);

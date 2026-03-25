@@ -69,12 +69,86 @@ body {
     background-position: center;
     position: relative;
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    padding: 0; /* Remove padding here, use it in container */
+}
+
+.header--small {
+    background-color: var(--color-grey-dark-3);
+    padding: 0;
+    position: relative;
+    z-index: 1000;
+}
+
+.header__nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 4rem;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Navigation Styles */
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav__el:link,
+.nav__el:visited {
+    color: var(--color-white);
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 300;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: inline-block;
+    padding: 1rem; /* Larger click area */
+}
+
+.nav__el:hover,
+.nav__el:active {
+    transform: translateY(-2px);
+    text-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+    color: var(--color-primary-light);
+}
+
+.nav--tours .nav__el:not(:last-child) {
+    margin-right: 2rem;
+}
+
+.nav--user .nav__el:not(:last-child) {
+    margin-right: 3rem;
+}
+
+.nav__el--cta:link,
+.nav__el--cta:visited {
+    padding: 1rem 3rem !important;
+    border-radius: 10rem;
+    border: 1px solid currentColor;
+}
+
+.nav__el--cta:hover {
+    background-color: var(--color-white) !important;
+    color: var(--color-grey-dark) !important;
 }
 
 .header__logo-box {
+    text-align: center;
+}
+
+.header__logo {
+    height: 4rem;
+}
+
+.header__text-box {
     position: absolute;
-    top: 4rem;
-    left: 4rem;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 80%; /* Ensure it's centered but not covering corners */
 }
 
 .header__logo {

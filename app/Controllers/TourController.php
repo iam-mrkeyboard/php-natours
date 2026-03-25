@@ -125,6 +125,8 @@ class TourController extends BaseController
             'status' => 'success',
             'data' => null
         ])->setStatusCode(204); // No Content
+    }
+
     /**
      * Uploads a cover image for a tour
      * URL: POST /api/v1/tours/(:num)/upload-cover

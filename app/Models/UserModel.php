@@ -34,60 +34,48 @@ class UserModel extends Model
     /**
      * Which fields are allowed to be inserted or updated via the model
      */
-    protected $allowedFields    = ['name', 'email', 'password', 'role', 'photo'];
+    protected $allowedFields    = ['name', 'email', 'password', 'role', 'photo', 'passwordChangedAt'];
 
     /**
-     * Whether to manage created_at and updated_at automatically
-     */
-    protected $useTimestamps = true;
-    protected $dateFormat    = 'datetime';
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
-    protected $deletedField  = 'deleted_at';
-
-    /**
-     * Validation rules for registering/updating a user
-     */
-    protected $validationRules      = [
-        'name'     => 'required|min_length[2]|max_length[255]',
-        'email'    => 'required|valid_email|is_unique[users.email]',
-        'password' => 'required|min_length[8]',
-    ];
-    
-    /**
-     * Custom validation messages
-     */
-    protected $validationMessages   = [
-        'email' => [
-            'is_unique' => 'Sorry. That email has already been taken. Please choose another.',
-        ],
-    ];
-    
-    /**
-     * Whether to skip validation during inserts/updates
-     */
-    protected $skipValidation       = false;
-
-    /**
-     * Callbacks: We use 'beforeInsert' and 'beforeUpdate' to hash the password
-     * before it ever touches the database.
+     * Callbacks
      */
     protected $beforeInsert = ['hashPassword'];
-    protected $beforeUpdate = ['hashPassword'];
+    protected $beforeUpdate = ['hashPassword', 'setPasswordChangedAt'];
 
     /**
      * Hashes the password if it's present in the data array.
      */
     protected function hashPassword(array $data)
     {
-        // If password is not set, just return the data as is
         if (! isset($data['data']['password'])) {
             return $data;
         }
 
-        // Hash the password using the default algorithm (currently bcrypt)
         $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
 
         return $data;
+    }
+
+    /**
+     * Sets the passwordChangedAt field when a password is changed.
+     */
+    protected function setPasswordChangedAt(array $data)
+    {
+        if (! isset($data['data']['password'])) {
+            return $data;
+        }
+
+        // Set to current time minus 1 second to ensure JWT issued after this
+        $data['data']['passwordChangedAt'] = date('Y-m-d H:i:s', time() - 1);
+
+        return $data;
+    }
+
+    /**
+     * Helper to verify if the provided password is correct.
+     */
+    public function correctPassword($candidatePassword, $userPassword)
+    {
+        return password_verify($candidatePassword, $userPassword);
     }
 }

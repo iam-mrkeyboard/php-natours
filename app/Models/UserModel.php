@@ -67,4 +67,27 @@ class UserModel extends Model
      * Whether to skip validation during inserts/updates
      */
     protected $skipValidation       = false;
+
+    /**
+     * Callbacks: We use 'beforeInsert' and 'beforeUpdate' to hash the password
+     * before it ever touches the database.
+     */
+    protected $beforeInsert = ['hashPassword'];
+    protected $beforeUpdate = ['hashPassword'];
+
+    /**
+     * Hashes the password if it's present in the data array.
+     */
+    protected function hashPassword(array $data)
+    {
+        // If password is not set, just return the data as is
+        if (! isset($data['data']['password'])) {
+            return $data;
+        }
+
+        // Hash the password using the default algorithm (currently bcrypt)
+        $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+
+        return $data;
+    }
 }

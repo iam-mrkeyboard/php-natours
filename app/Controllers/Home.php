@@ -10,9 +10,16 @@ class Home extends BaseController
      */
     public function index(): string
     {
+        // Load the TourModel to fetch data
+        $tourModel = new \App\Models\TourModel();
+        
+        // Fetch all available tours
+        $tours = $tourModel->findAll();
+
         // Data to be passed to the view
         $data = [
-            'title' => 'Exciting tours for adventurous people'
+            'title' => 'Exciting tours for adventurous people',
+            'tours' => $tours
         ];
 
         return view('pages/home', $data);

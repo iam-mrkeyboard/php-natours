@@ -45,30 +45,37 @@
         <div class="row" style="max-width: 114rem; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6rem;">
             <?php if (!empty($tours) && is_array($tours)): ?>
                 <?php foreach ($tours as $tour): ?>
-                    <div class="card" style="perspective: 150rem; position: relative; height: 52rem; background-color: #fff; box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.15); border-radius: 3px; overflow: hidden; transition: all .8s ease;">
-                        <div class="card__picture" style="background-size: cover; height: 23rem; background-blend-mode: screen; clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); border-top-left-radius: 3px; border-top-right-radius: 3px; background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url('<?= base_url('uploads/tours/' . $tour['imageCover']) ?>');">
-                            &nbsp;
-                        </div>
-                        <h4 class="card__heading" style="font-size: 2.8rem; font-weight: 300; text-transform: uppercase; text-align: right; color: #fff; position: absolute; top: 12rem; right: 2rem; width: 75%;">
-                            <span class="card__heading-span" style="padding: 1rem 1.5rem; -webkit-box-decoration-break: clone; box-decoration-break: clone; background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85));">
-                                <?= $tour['name'] ?>
-                            </span>
-                        </h4>
-                        <div class="card__details" style="padding: 3rem;">
-                            <ul style="list-style: none; width: 80%; margin: 0 auto;">
-                                <li style="text-align: center; font-size: 1.5rem; padding: 1rem; border-bottom: 1px solid #eee;"><?= $tour['duration'] ?> day tour</li>
-                                <li style="text-align: center; font-size: 1.5rem; padding: 1rem; border-bottom: 1px solid #eee;">Up to <?= $tour['maxGroupSize'] ?> people</li>
-                                <li style="text-align: center; font-size: 1.5rem; padding: 1rem; border-bottom: 1px solid #eee;"><?= $tour['difficulty'] ?> difficulty</li>
-                            </ul>
-                        </div>
-                        <div class="card__cta" style="position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%); text-align: center; width: 100%;">
-                            <p class="card__price-value" style="font-size: 4rem; font-weight: 100; margin-bottom: 2rem;">$<?= $tour['price'] ?></p>
-                            <a href="<?= base_url('tours/' . $tour['id']) ?>" class="btn btn--white" style="background-color: #55c57a; color: #fff; border-radius: 10rem; padding: 1.2rem 3rem; text-decoration: none; font-size: 1.4rem; text-transform: uppercase;">Details</a>
+                    <div class="card">
+                        <div class="card__side card__side--front">
+                            <div class="card__picture" style="background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.5), rgba(255, 119, 48, 0.5)), url('<?= base_url('uploads/tours/' . $tour['imageCover']) ?>');">
+                                &nbsp;
+                            </div>
+                            <h4 class="card__heading">
+                                <span class="card__heading-span">
+                                    <?= $tour['name'] ?>
+                                </span>
+                            </h4>
+                            <div class="card__details">
+                                <ul>
+                                    <li><?= $tour['duration'] ?> day tour</li>
+                                    <li>Up to <?= $tour['maxGroupSize'] ?> people</li>
+                                    <li><?= $tour['difficulty'] ?> difficulty</li>
+                                    <li>Rating: <?= $tour['ratingsAverage'] ?> / 5</li>
+                                </ul>
+                            </div>
+                            <div class="card__cta">
+                                <div class="card__price-box">
+                                    <p class="card__price-value">$<?= $tour['price'] ?></p>
+                                </div>
+                                <a href="<?= base_url('tours/' . $tour['id']) ?>" class="btn btn--green">Details</a>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p>No tours found.</p>
+                <div class="u-center-text">
+                    <p>No tours found. Please ensure the database is seeded.</p>
+                </div>
             <?php endif; ?>
         </div>
     </section>

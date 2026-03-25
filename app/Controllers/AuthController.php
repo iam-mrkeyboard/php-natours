@@ -8,7 +8,25 @@ use CodeIgniter\HTTP\ResponseInterface;
 class AuthController extends BaseController
 {
     /**
-     * Handles new user registration (Signup)
+     * Renders the Login page view.
+     * URL: GET /login
+     */
+    public function loginView()
+    {
+        return view('pages/login', ['title' => 'Log into your account']);
+    }
+
+    /**
+     * Renders the Signup page view.
+     * URL: GET /signup
+     */
+    public function signupView()
+    {
+        return view('pages/signup', ['title' => 'Create your account']);
+    }
+
+    /**
+     * Handles user registration via API.
      * URL: POST /api/v1/users/signup
      */
     public function signup()

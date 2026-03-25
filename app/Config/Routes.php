@@ -18,6 +18,10 @@ $routes->get('/', 'Home::index');
 // Tour Detail Page
 $routes->get('tours/(:num)', 'Tours::show/$1');
 
+// Auth Views
+$routes->get('login', 'AuthController::loginView');
+$routes->get('signup', 'AuthController::signupView');
+
 /**
  * --------------------------------------------------------------------
  * API Routes

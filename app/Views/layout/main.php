@@ -66,8 +66,8 @@
 
     <!-- Footer Section: Constant for SEO and navigation -->
     <footer class="footer">
-        <div class="footer__logo-box">
-            <img src="<?= base_url('img/logo-green-2x.png') ?>" alt="Full logo" class="footer__logo">
+        <div class="footer__logo-box" style="text-align: center; margin-bottom: 8rem;">
+            <img src="<?= base_url('img/logo-green.png') ?>" alt="Full logo" class="footer__logo" style="width: 15rem; height: auto;">
         </div>
         <div class="row" style="max-width: 114rem; margin: 0 auto; display: flex; justify-content: space-between;">
             <div class="col-1-of-2">

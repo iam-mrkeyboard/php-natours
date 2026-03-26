@@ -22,9 +22,9 @@
         </div>
         <div class="col-1-of-2" style="flex: 1;">
             <div class="composition" style="position: relative;">
-                <img src="<?= base_url('img/nat-1-large.jpg') ?>" alt="Photo 1" class="composition__photo composition__photo--p1" style="width: 55%; box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.4); border-radius: 2px; position: absolute; z-index: 10; transition: all .2s; outline-offset: 2rem; left: 0; top: -2rem;">
-                <img src="<?= base_url('img/nat-2-large.jpg') ?>" alt="Photo 2" class="composition__photo composition__photo--p2" style="width: 55%; box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.4); border-radius: 2px; position: absolute; z-index: 10; transition: all .2s; outline-offset: 2rem; right: 0; top: 2rem;">
-                <img src="<?= base_url('img/nat-3-large.jpg') ?>" alt="Photo 3" class="composition__photo composition__photo--p3" style="width: 55%; box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.4); border-radius: 2px; position: absolute; z-index: 10; transition: all .2s; outline-offset: 2rem; left: 20%; top: 10rem;">
+                <img src="<?= base_url('img/tours/tour-1-1.jpg') ?>" alt="Photo 1" class="composition__photo composition__photo--p1" style="width: 55%; box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.4); border-radius: 2px; position: absolute; z-index: 10; transition: all .2s; outline-offset: 2rem; left: 0; top: -2rem;">
+                <img src="<?= base_url('img/tours/tour-2-1.jpg') ?>" alt="Photo 2" class="composition__photo composition__photo--p2" style="width: 55%; box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.4); border-radius: 2px; position: absolute; z-index: 10; transition: all .2s; outline-offset: 2rem; right: 0; top: 2rem;">
+                <img src="<?= base_url('img/tours/tour-3-1.jpg') ?>" alt="Photo 3" class="composition__photo composition__photo--p3" style="width: 55%; box-shadow: 0 1.5rem 4rem rgba(0,0,0,0.4); border-radius: 2px; position: absolute; z-index: 10; transition: all .2s; outline-offset: 2rem; left: 20%; top: 10rem;">
             </div>
         </div>
     </div>

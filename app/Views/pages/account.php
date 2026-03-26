@@ -1,3 +1,6 @@
+<?= $this->extend('layout/main') ?>
+
+<?= $this->section('content') ?>
 <style>
     .alert {
         position: fixed;

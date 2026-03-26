@@ -1,7 +1,7 @@
 <?= $this->extend('layout/main') ?>
 
 <?= $this->section('content') ?>
-<main class="main" style="padding: 10rem 0; background-color: #f7f7f7;">
+<main class="main" style="padding: 10rem 0; background-color: #f7f7f7; min-height: 80vh;">
     <div class="u-center-text u-margin-bottom-big" style="text-align: center; margin-bottom: 8rem;">
         <h2 class="heading-secondary" style="font-size: 3.5rem; text-transform: uppercase; font-weight: 700; display: inline-block; background-image: linear-gradient(to right, #7ed56f, #28b485); -webkit-background-clip: text; color: transparent; letter-spacing: 2px;">
             Contact Us

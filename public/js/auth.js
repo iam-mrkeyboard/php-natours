@@ -28,10 +28,9 @@ if (loginForm) {
             const res = await fetch('/api/v1/users/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': csrfToken
                 },
-                body: JSON.stringify({ email, password })
+                body: new URLSearchParams({ email, password })
             });
 
             const data = await res.json();

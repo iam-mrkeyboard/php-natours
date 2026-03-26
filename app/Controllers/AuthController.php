@@ -66,9 +66,17 @@ class AuthController extends BaseController
     public function login()
     {
         $userModel = new \App\Models\UserModel();
-        $json = $this->request->getJSON(true);
-        $email = $json['email'] ?? '';
-        $password = $json['password'] ?? '';
+        
+        // Use getPost for better compatibility with form-encoded data
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        // Fallback to JSON if POST is empty
+        if (!$email || !$password) {
+            $json = $this->request->getJSON(true);
+            $email = $json['email'] ?? $email;
+            $password = $json['password'] ?? $password;
+        }
 
         $user = $userModel->where('email', $email)->first();
 
